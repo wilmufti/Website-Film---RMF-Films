@@ -29,17 +29,3 @@ document.addEventListener("click", (event) => {
     }
   }
 });
-//Popup---
-
-//---Redirect Known For---
-let scrollItem = document.querySelectorAll(".people-details-scroll-item img");
-scrollItem.forEach((item) => {
-  item.style.cursor = "pointer";
-  item.addEventListener("click", () => {
-    const title = item.alt || item.getAttribute("data-title");
-    if (title) {
-      window.location.href = `/people/${encodeURIComponent(title)}`;
-    }
-  });
-});
-//Redirect Known For---

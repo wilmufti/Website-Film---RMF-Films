@@ -285,7 +285,7 @@
       </table>
   @endif
 
-  {{ $data->links('pagination::simple-tailwind') }}
+  {{ $data->appends(['table' => $selectedTable])->links('pagination::simple-tailwind') }}
 <div style="margin-top: 10px; color: #ccc;">
     Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} results
 </div>
