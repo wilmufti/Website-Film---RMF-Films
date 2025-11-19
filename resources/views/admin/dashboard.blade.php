@@ -173,7 +173,7 @@
 
 <body>
 <div class="sidebar">
-  <h1>RMF</h1>
+  <img src="{{ asset('images/logo.png') }}" alt="Logo" />
   <nav>
     @foreach ($tables as $t)
       <a href="{{ route('admin.dashboard', ['table' => $t]) }}"
