@@ -17,16 +17,51 @@ class AdminController extends Controller
         }
     }
 
+    private function getPrimaryKey($table)
+    {
+        $driver = DB::getDriverName(); // mysql / sqlite / pgsql / sqlsrv
+
+        // MYSQL
+        if ($driver === 'mysql') {
+            $indexes = DB::select("SHOW KEYS FROM `$table` WHERE Key_name = 'PRIMARY'");
+            return $indexes[0]->Column_name ?? 'id';
+        }
+
+        // SQLITE
+        if ($driver === 'sqlite') {
+            $pragma = DB::select("PRAGMA table_info($table)");
+            foreach ($pragma as $col) {
+                if ($col->pk == 1) {
+                    return $col->name;
+                }
+            }
+            return 'id';
+        }
+
+        // POSTGRES
+        if ($driver === 'pgsql') {
+            $query = "
+                SELECT a.attname
+                FROM pg_index i
+                JOIN pg_attribute a ON a.attrelid = i.indrelid AND a.attnum = ANY(i.indkey)
+                WHERE i.indrelid = '{$table}'::regclass AND i.indisprimary;
+            ";
+            $pk = DB::select($query);
+            return $pk[0]->attname ?? 'id';
+        }
+
+        // Fallback
+        return Schema::getColumnListing($table)[0] ?? 'id';
+    }
+
     public function index(Request $request)
     {
         $selectedTable = $request->query('table', $this->tables[0]);
         $this->validateTable($selectedTable);
 
-        $data = DB::table($selectedTable)->paginate(10); // Menggunakan paginasi
+        $primaryKey = $this->getPrimaryKey($selectedTable);
 
-        // Cari primary key
-        $pk_res = DB::select("SHOW KEYS FROM `{$selectedTable}` WHERE Key_name = 'PRIMARY'");
-        $primaryKey = $pk_res[0]->Column_name ?? null;
+        $data = DB::table($selectedTable)->paginate(10);
 
         return view('admin.dashboard', [
             'tables' => $this->tables,
@@ -40,8 +75,8 @@ class AdminController extends Controller
     public function edit($table, $id)
     {
         $this->validateTable($table);
-        $pk_res = DB::select("SHOW KEYS FROM `{$table}` WHERE Key_name = 'PRIMARY'");
-        $primaryKey = $pk_res[0]->Column_name ?? 'id';
+
+        $primaryKey = $this->getPrimaryKey($table);
 
         $item = DB::table($table)->where($primaryKey, $id)->first();
 
@@ -51,12 +86,48 @@ class AdminController extends Controller
 
         return view('admin.edit', [
             'table' => $table,
+            'id' => $id,
             'item' => (array) $item,
             'columns' => Schema::getColumnListing($table),
             'primaryKey' => $primaryKey,
         ]);
     }
-    
-    // Anda bisa menambahkan fungsi create, store, update, destroy di sini
-    // meniru logika dari file edit.php dan delete.php lama Anda.
+
+    public function store(Request $request, $table)
+    {
+        $this->validateTable($table);
+
+        $data = $request->except(['_token']);
+
+        DB::table($table)->insert($data);
+
+        return redirect()->route('admin.dashboard', ['table' => $table])
+                         ->with('success', 'Data berhasil ditambahkan.');
+    }
+
+    public function update(Request $request, $table, $id)
+    {
+        $this->validateTable($table);
+
+        $primaryKey = $this->getPrimaryKey($table);
+
+        $data = $request->except(['_token', '_method']);
+
+        DB::table($table)->where($primaryKey, $id)->update($data);
+
+        return redirect()->route('admin.dashboard', ['table' => $table])
+                         ->with('success', 'Data berhasil diperbarui.');
+    }
+
+    public function destroy($table, $id)
+    {
+        $this->validateTable($table);
+
+        $primaryKey = $this->getPrimaryKey($table);
+
+        DB::table($table)->where($primaryKey, $id)->delete();
+
+        return redirect()->route('admin.dashboard', ['table' => $table])
+                         ->with('success', 'Data berhasil dihapus.');
+    }
 }
