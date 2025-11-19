@@ -130,4 +130,16 @@ class AdminController extends Controller
         return redirect()->route('admin.dashboard', ['table' => $table])
                          ->with('success', 'Data berhasil dihapus.');
     }
+
+    public function create($table)
+{
+    $this->validateTable($table);
+
+    return view('admin.tambah', [
+        'table' => $table,
+        'columns' => Schema::getColumnListing($table),
+        'primaryKey' => $this->getPrimaryKey($table)
+    ]);
+}
+
 }
