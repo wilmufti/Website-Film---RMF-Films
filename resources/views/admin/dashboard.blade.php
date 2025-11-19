@@ -6,121 +6,167 @@
 
   <style>
     :root {
-      --primary: #1e1e2f;
-      --secondary: #3498db;
-      --light: #ffffff;
-      --dark: #151521;
-      --text: #ecf0f1;
-      --highlight: #2980b9;
-    }
+        --primary: #1e1e2f;
+        --secondary: #3498db;
+        --light: #ffffff;
+        --dark: #151521;
+        --text: #ecf0f1;
+        --highlight: #2980b9;
+      }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-    }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+      }
 
-    body {
-      background-color: var(--dark);
-      color: var(--text);
-      display: flex;
-      min-height: 100vh;
-    }
+      body {
+        background-color: var(--dark);
+        color: var(--text);
+        display: flex;
+        min-height: 100vh;
+      }
 
-    .sidebar {
-      width: 220px;
-      background-color: var(--primary);
-      padding: 20px;
-      flex-shrink: 0;
-    }
+      .sidebar {
+        width: 220px;
+        background-color: var(--primary);
+        padding: 20px;
+        flex-shrink: 0;
+      }
 
-    .sidebar nav a {
-      display: block;
-      color: var(--text);
-      text-decoration: none;
-      margin-bottom: 10px;
-      padding: 8px 10px;
-      border-radius: 4px;
-    }
+      .sidebar h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: var(--secondary);
+      }
 
-    .sidebar nav a:hover,
-    .sidebar nav a.active {
-      background-color: var(--highlight);
-    }
+      .sidebar nav a {
+        display: block;
+        color: var(--text);
+        text-decoration: none;
+        margin-bottom: 10px;
+        padding: 8px 10px;
+        border-radius: 4px;
+      }
 
-    .main-content {
-      flex-grow: 1;
-      padding: 30px;
-    }
+      .sidebar nav a:hover,
+      .sidebar nav a.active {
+        background-color: var(--highlight);
+      }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 20px;
-    }
+      .sidebar nav .logout {
+        color: red;
+        font-weight: bold;
+        margin-top: 30px;
+        display: block;
+      }
 
-    .card {
-      background-color: #1f1f2e;
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      color: var(--text);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
+      .main-content {
+        flex-grow: 1;
+        padding: 30px;
+      }
 
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+      h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
 
-    .card .name {
-      padding: 10px;
-      background-color: #2c2c3e;
-      font-weight: bold;
-    }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 20px;
+      }
 
-    .action-links a {
-      background-color: #16a085;
-      padding: 5px 10px;
-      color: white;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 13px;
-      margin: 5px;
-      display: inline-block;
-    }
+      .card {
+        background-color: #1f1f2e;
+        border-radius: 8px;
+        overflow: hidden;
+        text-align: center;
+        color: var(--text);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
 
-    .action-links button {
-      background-color: #e74c3c;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 4px;
-      color: white;
-      cursor: pointer;
-    }
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
+      .card .name {
+        padding: 10px;
+        background-color: #2c2c3e;
+        font-weight: bold;
+      }
 
-    th, td {
-      padding: 10px;
-      border: 1px solid #333;
-      vertical-align: top;
-    }
+      .action-links a {
+        background-color: #16a085;
+        padding: 5px 10px;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 13px;
+        display: inline-block;
+        margin-top: 5px;
+      }
 
-    th {
-      background-color: var(--primary);
-    }
+      .action-links a:hover {
+        background-color: #138d75;
+      }
 
-    pre {
-      white-space: pre-wrap;
-      word-break: break-word;
-    }
+     /* Tombol Hapus merah */
+     .action-links button {
+       background-color: #e74c3c; /* merah */
+       color: #fff;
+       border: none;
+      padding: 6px 10px;
+       border-radius: 4px;
+       font-size: 13px;
+       cursor: pointer;
+       margin-top: 5px;
+       display: inline-block;
+     }
+
+     .action-links button:hover {
+       background-color: #c0392b; /* gelap saat hover */
+     }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th, td {
+        padding: 10px;
+        border: 1px solid #333;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background-color: var(--primary);
+      }
+
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      a.add-btn {
+        display: inline-block;
+        background: #27ae60;
+        color: white;
+        padding: 8px 14px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      img {
+        max-height: 100px;
+      }
   </style>
 </head>
 
