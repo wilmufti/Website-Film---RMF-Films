@@ -92,7 +92,7 @@
         height: 200px;
         object-fit: cover;
       }
-
+      
       .card .name {
         padding: 10px;
         background-color: #2c2c3e;
@@ -114,9 +114,8 @@
         background-color: #138d75;
       }
 
-     /* Tombol Hapus merah */
      .action-links button {
-       background-color: #e74c3c; /* merah */
+       background-color: #e74c3c;
        color: #fff;
        border: none;
       padding: 6px 10px;
@@ -167,6 +166,8 @@
       img {
         max-height: 100px;
       }
+
+      
   </style>
 </head>
 
@@ -203,9 +204,6 @@
       $hasName  = in_array('name', $columns) || in_array('person_name', $columns);
   @endphp
 
-  {{-- ============================ --}}
-  {{-- === MODE GRID (PHOTO + NAME) --}}
-  {{-- ============================ --}}
   @if ($hasPhoto && $hasName)
       <div class="grid">
         @foreach($data as $row)
@@ -240,9 +238,6 @@
         @endforeach
       </div>
 
-  {{-- ============================ --}}
-  {{-- === MODE TABEL (normal) --}}
-  {{-- ============================ --}}
   @else
       <table>
         <thead>
@@ -261,15 +256,12 @@
                 <td>
                   @php $value = $row->$col; @endphp
 
-                  {{-- Jika URL gambar --}}
                   @if (filter_var($value, FILTER_VALIDATE_URL))
                       <img src="{{ $value }}" style="max-height:100px">
 
-                  {{-- Jika JSON --}}
                   @elseif (is_string($value) && (str_starts_with($value,'[') || str_starts_with($value,'{')))
                       <pre>{{ Str::limit($value, 300) }}</pre>
 
-                  {{-- Normal --}}
                   @else
                       {{ $value }}
                   @endif
@@ -293,7 +285,10 @@
       </table>
   @endif
 
-  {{ $data->appends(['table'=>$selectedTable])->links() }}
+  {{ $data->links('pagination::simple-tailwind') }}
+<div style="margin-top: 10px; color: #ccc;">
+    Showing {{ $data->firstItem() }} to {{ $data->lastItem() }} of {{ $data->total() }} results
+</div>
 
 </div>
 </body>
