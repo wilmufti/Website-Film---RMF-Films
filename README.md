@@ -7,52 +7,48 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Anggota Kelompok
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Rayen Andika Ashari (2310631170043)
+- Wildan Mufti Brawijaya (2310631170121)
+- Azka Reza Aditya (2310631170127)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Deskripsi Project
 
-## Learning Laravel
+RMA Films adalah sebuah website sederhana yang kami buat untuk menampilkan berbagai informasi seputar anime, mulai dari daftar anime, movie anime, hingga profil para seiyuu. Di dalamnya, pengguna bisa melihat detail lengkap seperti sinopsis, karakter, genre, dan informasi seiyuu beserta peran-perannya. Semua data dikelola melalui panel admin sehingga mudah diperbarui kapan saja.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Tujuan & Fungsi project ini:
+- Menyediakan platform untuk melihat informasi anime, movie anime, dan seiyuu secara lengkap dalam satu tempat.
+- Mempermudah pengguna mengakses detail anime seperti sinopsis, karakter, genre, dan studio.
+- Menghadirkan panel admin untuk menambah, mengedit, dan menghapus data secara dinamis.
+- Mendukung penyajian konten visual seperti poster, foto seiyuu, dan gambar karakter untuk memperkaya informasi.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tech Stark
 
-## Laravel Sponsors
+Project ini dibangun menggunakan teknologi berikut:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Technology | Kegunaan |
+|------------|-----------|
+| **Laravel** | Backend & routing |
+| **Blade Template** | View templating |
+| **Tailwind CSS / Bootstrap** | Styling UI |
+| **PHP** | Server-side logic |
+| **MySQL** | Database |
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Fitur-fitur Project
 
-## Contributing
+- Daftar dan Detail Anime => Menampilkan kumpulan anime lengkap dengan poster, genre, rating, serta halaman detail berisi sinopsis, karakter, dan informasi pendukung lainnya.
+- Daftar dan Detail Seiyuu => Menyediakan profil seiyuu dengan foto, biografi singkat, daftar peran yang pernah diisi, serta hubungan langsung ke anime dan karakter yang mereka dub.
+- Daftar dan Detail Movie Anime => Menampilkan movie anime dalam format katalog dengan poster serta halaman detail yang memuat ringkasan cerita dan informasi film lainnya.
+- Panel Admin & Manajemen Data => Admin dapat menambah, mengedit, dan menghapus data anime, movie, karakter, dan seiyuu melalui dashboard yang terintegrasi dengan database, sehingga seluruh konten website selalu up to date.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
+---
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
